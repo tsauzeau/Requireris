@@ -1,0 +1,6 @@
+[submodule "Android"]
+	path = Android
+	url = https://github.com/JeanBarriere/Replicator.git
+[submodule "Core"]
+	path = Core
+	url = https://github.com/tsauzeau/SimpleOTP.git
