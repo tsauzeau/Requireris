@@ -28,7 +28,11 @@
                     console.log(datas);
                     for (data of datas) {
                         console.log(data);
-                        var token = totp(data["key"]);
+                        try {
+                            var token = totp(data["key"]);
+                        } catch (e) {
+                            console.log(e);
+                        }
                         $("#navigation").append(
                             '<li class="list-group-item" id="elem_' + data["id"] + '" data-id="' + data["id"] + '" > <img class = "img-circle media-object pull-left" src = "./assets/' + data["provider"] +
                             '.png" height = "48"> <div class = "media-body"> <strong>' + data["account"] + '</strong> <center> <p style = "font-size: 250%;" id="token_' + data["id"] + '"> ' + token +
@@ -41,8 +45,12 @@
 
                         function updateTotp() {
                             for (data of datas) {
-                                var token = totp(data["key"]);
-                                $('#token_' + data["id"]).text(token)
+                                try {
+                                    var token = totp(data["key"]);
+                                    $('#token_' + data["id"]).text(token);
+                                } catch (e) {
+                                    console.log(e);
+                                }
                             }
                         }
 
@@ -94,7 +102,11 @@
                                 if (err) {
                                     console.error(err)
                                 }
-                                var token = totp(key);
+                                try {
+                                    var token = totp(key);
+                                } catch (e) {
+                                    console.log(e);
+                                }
                                 $("#navigation").append(
                                     '<li class="list-group-item" id="elem_' + maxId + '" data-id="' + maxId + '" > <img class = "img-circle media-object pull-left" src = "./assets/' + provider +
                                     '.png" height = "48"> <div class = "media-body"> <strong>' + acount + '</strong> <center> <p style = "font-size: 250%;" id="token_' + maxId + '"> ' + token +
@@ -120,7 +132,7 @@
                     start();
                 });
             } else {
-              start();
+                start();
             }
         });
     </script>
